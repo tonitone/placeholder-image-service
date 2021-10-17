@@ -1,0 +1,19 @@
+{
+    "eslint.enable": true,
+    "eslint.debug": true,
+    "eslint.format.enable": true,
+    "eslint.alwaysShowStatus": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.validate": [
+        "javascript",
+        "typescriptreact"
+    ],
+    "eslint.workingDirectories": [
+        "./"
+    ],
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    }
+}
