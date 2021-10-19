@@ -1,4 +1,5 @@
 {
+    "eslint.runtime": "node",
     "eslint.enable": true,
     "eslint.debug": true,
     "eslint.format.enable": true,
@@ -11,7 +12,7 @@
         "typescriptreact"
     ],
     "eslint.workingDirectories": [
-        "./"
+        "./src/"
     ],
     "[javascript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",
