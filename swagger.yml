@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Placeholderimage generator API
+  description: Just for learning fun.
+  version: 0.0.7
+servers:
+  - url: http://localhost:6565/v1
+    description: Optional server description is not truly available
+paths: 
+  /{extension}/{width}x{height}:
+    get:
+      summary: returns a image with the given extension, the width and height
+      description: with /gif/1x1/ you get a small transparent spacer gif that you can resize in side your HTML with <img src=http://localhost:6565/gif/1x1/ width=3 height=3>
+      parameters:
+        - name: extension
+          in: path
+          required: true
+          description: Generates a image with the requested mime-type. E. g. gif, jpg, jpeg, png, ...
+          schema:
+            type : string
+            minimum: 3
+            maximum: 4
+        - name: width
+          in: path
+          required: true
+          description: Generates a image with desired width in pixel
+          schema:
+            type : integer
+            minimum: 1
+            maximum: 4
+        - name: height
+          in: path
+          required: true
+          description: Generates a image with desired height in pixel
+          schema:
+            type : integer
+            minimum: 1
+            maximum: 4
+      responses:
+        '200':    # status code

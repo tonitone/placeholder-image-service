@@ -41,6 +41,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "jimp": "^0.16.1",
-    "pm2": "^5.1.2"
+    "pm2": "^5.1.2",
+    "swagger-ui-express": "^4.1.6",
+    "yaml": "^1.10.2"
   }
 }
