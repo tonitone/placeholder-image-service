@@ -6,6 +6,8 @@
   "main": "index.js",
   "scripts": {
     "createTestImage": "node src/index.js /png/640x480/layout:blank,color:000000,bg-color:ff9900/",
+    "start": "pm2 start src/server.js",
+    "stop": "pm2 delete 'all'",
     "lint": "eslint --ext .js --ignore-path .gitignore",
     "lint:fix": "eslint --fix --ext .js --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -37,6 +39,8 @@
     "eslint-plugin-promise": "^5.1.0"
   },
   "dependencies": {
-    "jimp": "^0.16.1"
+    "express": "^4.17.1",
+    "jimp": "^0.16.1",
+    "pm2": "^5.1.2"
   }
 }
