@@ -1,15 +1,16 @@
 import Jimp from 'jimp'
 import fs from 'fs'
 
-const storePath = './public/image-store'
+let storePath = '../public/image-store'
 let imagePath = ''
 
 export const getImagePath = _ => {
   return imagePath
 }
 
-export const createImage = parameters => {
+export const createImage = (parameters, options) => {
   return new Promise(function (resolve, reject) {
+    storePath = options.storePath || storePath
     const fileName = `${parameters.dimension.width}_${parameters.dimension.height}_${parameters.backgroundColor}`
     const message = `${parameters.dimension.width} X ${parameters.dimension.height}`
     const x = 10
@@ -21,6 +22,7 @@ export const createImage = parameters => {
     if (fs.existsSync(getImagePath())) {
       return true
     }
+
     const image = new Jimp(
       parameters.dimension.width,
       parameters.dimension.height,

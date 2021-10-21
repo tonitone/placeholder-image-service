@@ -12,7 +12,9 @@
         "typescriptreact"
     ],
     "eslint.workingDirectories": [
-        "./src/"
+        "./",
+        "./src/",
+        "./src/cli/"
     ],
     "[javascript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",

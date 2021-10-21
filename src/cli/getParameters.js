@@ -3,7 +3,7 @@ const isDebug = true
 console.log('getParameters.js')
 
 export const getParameters = (params) => {
-  const regex = /\/(\w{3,4})\/(\d+)x(\d+)\/((layout:blank)(,color:(.{6}))(,bg\-color:(.{6}))*)/
+  const regex = /\/(\w{3,4})\/(\d+)x(\d+)\/((layout:blank)(,color:(.{6}))(,bg-color:(.{6}))*)/
   const matches = params.match(regex)
 
   if (matches.length < 5) {
