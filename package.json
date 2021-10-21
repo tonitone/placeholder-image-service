@@ -8,6 +8,7 @@
     "createTestImage": "node src/index.js /png/640x480/layout:blank,color:000000,bg-color:ff9900/",
     "start": "pm2 start src/server.js",
     "stop": "pm2 delete 'all'",
+    "restart": "yarn stop; yarn start",
     "lint": "eslint --ext .js --ignore-path .gitignore",
     "lint:fix": "eslint --fix --ext .js --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -41,6 +42,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "jimp": "^0.16.1",
+    "mime-types": "^2.1.33",
     "pm2": "^5.1.2",
     "swagger-ui-express": "^4.1.6",
     "yaml": "^1.10.2"
