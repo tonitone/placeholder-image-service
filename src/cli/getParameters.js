@@ -1,26 +1,14 @@
-const isDebug = true
-
-console.log('getParameters.js')
-
+/**
+ *
+ * @param {*} params
+ * @returns
+ */
 export const getParameters = (params) => {
   const regex = /\/(\w{3,4})\/(\d+)x(\d+)\/((layout:blank)(,color:(.{6}))(,bg-color:(.{6}))*)/
   const matches = params.match(regex)
 
-  if (matches.length < 5) {
-    console.log('wrong arguments!')
-    return false
-  }
-
-  if (isDebug) {
-    console.log('-')
-    console.log('extension', matches[1])
-    console.log('dimension widht', matches[2])
-    console.log('dimension height', matches[3])
-    console.log('-')
-    console.log('layout', matches[5])
-    console.log('layout color', matches[7])
-    console.log('layout background-color', matches[9])
-    console.log('-')
+  if (matches === null) {
+    return { error: 'no usable parameters found' }
   }
 
   return {
