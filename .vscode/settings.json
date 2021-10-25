@@ -13,8 +13,7 @@
     ],
     "eslint.workingDirectories": [
         "./",
-        "./src/",
-        "./src/cli/"
+        "./src/**/*",
     ],
     "[javascript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",
