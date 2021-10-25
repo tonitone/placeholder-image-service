@@ -5,17 +5,38 @@ import express from 'express'
 import mime from 'mime-types'
 import swaggerUi from 'swagger-ui-express'
 import { createImage, getImagePath } from './createImage.js'
+
+/**
+ *
+ * @param {object} dimension
+ */
+export const setImageDimension = dimension => {
+  const dimensions = dimension.split('x')
+  createImageOptions.dimension = {
+    width: dimensions[0],
+    height: dimensions[1]
+  }
+}
+const expressPort = 8000
+const jimpOptions = {}
+const createImageOptions = {
+  extension: 'png',
+  dimension: {
+    width: 1,
+    height: 1
+  },
+  storePath: './public/image-store'
+}
 const swaggerDocument = YAML.parse(
   fs.readFileSync('./swagger.yml', 'utf8')
 )
-
 const app = express()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // public folder
-app.use(express.static('../public'))
+app.use('/public', express.static('./public'))
 
 // swagger stuff
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
@@ -27,34 +48,28 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/:extension/:dimension', async (req, res, next) => {
-  const options = { }
-  const dimension = req.params.dimension.split('x')
+app.get('/:extension/:dimension', (req, res, next) => {
   const fileName = path.resolve(path.resolve(getImagePath()))
-  await createImage({
-    extension: req.params.extension,
-    dimension: {
-      width: dimension[0],
-      height: dimension[1]
-    }
-  })
-  res
-    .status(200)
-    .contentType(mime.lookup(req.params.extension))
-    .sendFile(
-    // path.resolve(getImagePath()),
-      fileName,
-      // { root: 'image-store' }
-      options,
-      function (err) {
-        if (err) {
-          next(err)
-        } else {
-          console.log('Sent:', fileName)
+
+  setImageDimension(req.params.dimension)
+  createImageOptions.extension = req.params.extension
+
+  createImage(createImageOptions).then(function () {
+    res
+      .status(200)
+      .contentType(mime.lookup(req.params.extension))
+      .sendFile(
+        fileName,
+        jimpOptions,
+        function (err) {
+          if (err) {
+            next(err)
+          } else {
+            console.log('Sent:', fileName)
+          }
         }
-      }
-    )
-  res.end(fileName, 'binary')
+      )
+  })
 })
 
-app.listen(8000)
+app.listen(expressPort)

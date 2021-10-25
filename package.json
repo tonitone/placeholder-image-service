@@ -6,9 +6,10 @@
   "main": "index.js",
   "scripts": {
     "createTestImage": "node src/cli/index.js /png/640x480/layout:blank,color:000000,bg-color:ff9900/",
-    "start": "pm2 start src/server.js",
-    "stop": "pm2 delete 'all'",
-    "restart": "yarn stop; yarn start",
+    "server:start": "pm2 start src/server.js",
+    "server:logs": "pm2 logs --no-daemon",
+    "server:stop": "pm2 delete 'all'",
+    "server:restart": "yarn server:stop; yarn server:start",
     "lint": "eslint --ext .js --ignore-path .gitignore",
     "lint:fix": "eslint --fix --ext .js --ignore-path .gitignore",
     "test": "jest"
