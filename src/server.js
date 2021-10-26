@@ -4,7 +4,7 @@ import YAML from 'yaml'
 import express from 'express'
 import mime from 'mime-types'
 import swaggerUi from 'swagger-ui-express'
-import { createImage, getImagePath } from './createImage.js'
+import { createImage } from './createImage.js'
 
 /**
  *
@@ -25,8 +25,14 @@ const createImageOptions = {
     width: 1,
     height: 1
   },
-  storePath: './public/image-store'
+  storePath: './public/image-store',
+  callbackObject: {
+    response: null,
+    fileName: null
+  }
 }
+export const getCreateImageOptions = _ => createImageOptions
+
 const swaggerDocument = YAML.parse(
   fs.readFileSync('./swagger.yml', 'utf8')
 )
@@ -48,28 +54,29 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/:extension/:dimension', (req, res, next) => {
-  const fileName = path.resolve(path.resolve(getImagePath()))
+/**
+ *
+ * @param {object} response
+ * @param {string} fileName
+ */
+export const createImageCallback = (response, fileName) => {
+  response.sendFile(
+    path.resolve(fileName),
+    jimpOptions
+  )
+}
 
+app.get('/:extension/:dimension', (req, res) => {
   setImageDimension(req.params.dimension)
   createImageOptions.extension = req.params.extension
+  createImageOptions.callbackObject = {
+    response: res
+  }
 
-  createImage(createImageOptions).then(function () {
-    res
-      .status(200)
-      .contentType(mime.lookup(req.params.extension))
-      .sendFile(
-        fileName,
-        jimpOptions,
-        function (err) {
-          if (err) {
-            next(err)
-          } else {
-            console.log('Sent:', fileName)
-          }
-        }
-      )
-  })
+  res
+    .status(200)
+    .contentType(mime.lookup(req.params.extension))
+  createImage(createImageOptions)
 })
 
 app.listen(expressPort)
