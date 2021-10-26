@@ -11,7 +11,7 @@ if (process.argv.length !== 3) {
 const imageParameters = getParameters(process.argv[2])
 imageParameters.storePath = './public/image-store'
 imageParameters.isCli = true
+
 if (!imageParameters.error) {
   createImage(imageParameters)
-  process.exit(0)
 }

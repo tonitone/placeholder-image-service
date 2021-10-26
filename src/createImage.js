@@ -1,4 +1,5 @@
 import Jimp from 'jimp'
+import fs from 'fs'
 import { createImageCallback } from './server.js'
 
 const defaults = {
@@ -39,6 +40,10 @@ export const createImage = (options = {}) => {
 
   setImagePath(`${options.storePath}/${fileName}.${options.extension}`)
 
+  if (options.isCli && fs.existsSync(getImagePath())) {
+    return true
+  }
+
   const image = new Jimp(
     options.dimension.width,
     options.dimension.height,
@@ -55,7 +60,7 @@ export const createImage = (options = {}) => {
       image.write(
         getImagePath(),
         function () {
-          if (options.callbackObject.response !== null) {
+          if (options.callbackObject) {
             createImageCallback(options.callbackObject.response, getImagePath())
           }
         }
