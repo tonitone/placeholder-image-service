@@ -12,6 +12,7 @@
     "server:restart": "yarn server:stop; yarn server:start",
     "lint": "eslint . --ext .js --ignore-path .gitignore",
     "lint:fix": "yarn lint --fix",
+    "deletePublicImageStore": "rm public/image-store/*",
     "test": "jest"
   },
   "author": "Toni Ivanisevic <030toni@gmail.com>",
