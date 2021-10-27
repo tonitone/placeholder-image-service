@@ -20,6 +20,7 @@ paths:
             type : string
             minimum: 3
             maximum: 4
+            example: gif
         - name: width
           in: path
           required: true
@@ -27,7 +28,8 @@ paths:
           schema:
             type : integer
             minimum: 1
-            maximum: 4
+            maximum: 9999
+            example: 1
         - name: height
           in: path
           required: true
@@ -35,6 +37,7 @@ paths:
           schema:
             type : integer
             minimum: 1
-            maximum: 4
+            maximum: 9999
+            example: 1
       responses:
         '200':    # status code
