@@ -4,7 +4,7 @@
  * @returns
  */
 export const getParameters = (params) => {
-  const regex = /\/(\w{3,4})\/(\d+)x(\d+)\/((layout:blank)(,color:(.{6}))(,bg-color:(.{6}))*)/
+  const regex = /\/(\w{3,4})\/(\d+)x(\d+)\/((layout:blank)(,bg-color:(.{6}))*(,color:(.{6})))/
   const matches = params.match(regex)
 
   if (matches === null) {
@@ -18,7 +18,7 @@ export const getParameters = (params) => {
       height: matches[3]
     },
     layout: matches[5],
-    color: matches[7],
-    backgroundColor: matches[9]
+    backgroundColor: matches[7],
+    color: matches[9]
   }
 }

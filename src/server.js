@@ -26,10 +26,17 @@ const createImageOptions = {
     height: 1
   },
   storePath: './public/image-store',
-  callbackObject: {
-    response: null,
-    fileName: null
-  }
+  /**
+   *
+   * @param {object} options
+   */
+  callbackOnGenerated: (options) => {
+    options.responseObject.sendFile(
+      path.resolve(options.imagePath),
+      jimpOptions
+    )
+  },
+  callbackOnGeneratedResponseObject: null
 }
 export const getCreateImageOptions = _ => createImageOptions
 
@@ -64,14 +71,13 @@ export const createImageCallback = (response, fileName) => {
     path.resolve(fileName),
     jimpOptions
   )
+  return false
 }
 
 app.get('/:extension/:dimension', (req, res) => {
   setImageDimension(req.params.dimension)
   createImageOptions.extension = req.params.extension
-  createImageOptions.callbackObject = {
-    response: res
-  }
+  createImageOptions.callbackOnGeneratedResponseObject = res
 
   res
     .status(200)

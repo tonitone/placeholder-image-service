@@ -1,10 +1,9 @@
 import Jimp from 'jimp'
 import fs from 'fs'
-import { createImageCallback } from './server.js'
 
 const defaults = {
   storePath: '../public/image-store',
-  backgroundColor: '000000ff'
+  backgroundColor: 'CCCCCC'
 }
 
 let imagePath = ''
@@ -41,7 +40,8 @@ export const createImage = (options = {}) => {
   setImagePath(`${options.storePath}/${fileName}.${options.extension}`)
 
   if (options.isCli && fs.existsSync(getImagePath())) {
-    return true
+    console.log('Image exists, we won\'t generate a new one!')
+    console.log('You could delete all images. Use: yarn run deletePublicImageStore')
   }
 
   const image = new Jimp(
@@ -52,16 +52,25 @@ export const createImage = (options = {}) => {
       if (err) throw (err)
     })
 
-  Jimp.loadFont(Jimp.FONT_SANS_14_BLACK)
+  Jimp.loadFont(Jimp.FONT_SANS_8_BLACK)
     .then(font => {
       image.print(font, x, y, message)
       return image
     }).then(image => {
-      image.write(
+      return image.write(
         getImagePath(),
         function () {
-          if (options.callbackObject) {
-            createImageCallback(options.callbackObject.response, getImagePath())
+          if (typeof options.callbackOnGenerated === 'function') {
+            if (options.callbackOnGeneratedResponseObject) {
+              options.callbackOnGenerated(
+                {
+                  responseObject: options.callbackOnGeneratedResponseObject,
+                  imagePath: getImagePath()
+                }
+              )
+            } else {
+              options.callbackOnGenerated()
+            }
           }
         }
       )
