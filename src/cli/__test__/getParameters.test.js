@@ -6,7 +6,7 @@ describe('getParameters', () => {
     expect(imageParameters.error).toBe('no usable parameters found')
   })
   test('should contain no usable parameters', () => {
-    const imageParameters = getParameters('/png/640x480/layout:blank,color:000000,bg-color:ff0000/')
+    const imageParameters = getParameters('/png/640x480/layout:blank,bg-color:ff0000,color:000000/')
     expect(
       imageParameters
     ).toEqual(
@@ -17,8 +17,8 @@ describe('getParameters', () => {
           height: '480'
         },
         layout: 'layout:blank',
-        color: '000000',
-        backgroundColor: 'ff0000'
+        backgroundColor: 'ff0000',
+        color: '000000'
       }
     )
   })
