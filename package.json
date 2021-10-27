@@ -1,6 +1,6 @@
 {
   "name": "placeholder-image-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "description": "placeholder image generator",
   "main": "index.js",
