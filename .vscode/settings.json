@@ -2,22 +2,27 @@
     "eslint.runtime": "node",
     "eslint.enable": true,
     "eslint.debug": true,
-    "eslint.format.enable": true,
     "eslint.alwaysShowStatus": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
     "eslint.validate": [
-        "javascript",
-        "typescriptreact"
+        "javascript"
     ],
     "eslint.workingDirectories": [
         "./",
         "./src/**/*",
+        "eslint.format.enable": true,
     ],
-    "[javascript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "[jsonc]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "editor.codeLens": true,
+    "debug.javascript.usePreview": true,
+    "debug.javascript.usePreviewAutoAttach": true,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
