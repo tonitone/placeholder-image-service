@@ -10,18 +10,17 @@ let imagePath = ''
 
 /**
  *
- * @param {string} _
- * @returns {string}
+ * @returns {string} imagePath
  */
-const getImagePath = _ => {
+const getImagePath = () => {
   return imagePath
 }
 
 /**
  *
- * @param {string} path
+ * @param {string} path sets tze imagePath
  */
-export const setImagePath = path => {
+const setImagePath = path => {
   imagePath = path
 }
 
