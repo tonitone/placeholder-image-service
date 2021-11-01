@@ -10,12 +10,22 @@ import { createImage } from './createImage.js'
  *
  * @param {object} dimension
  */
-export const setImageDimension = dimension => {
+export const returnDimensions = dimension => {
   const dimensions = dimension.split('x')
-  createImageOptions.dimension = {
+  return {
     width: dimensions[0],
     height: dimensions[1]
   }
+}
+/**
+ *
+ * @param {object} parameters request parameters "req.params"
+ */
+export const extraceRequestParametersToCreateImageOptions = parameters => {
+  createImageOptions.dimension = returnDimensions(parameters.dimension)
+  createImageOptions.extension = parameters.extension
+  createImageOptions.backgroundColor = parameters.backgroundColor || null
+  createImageOptions.textColor = parameters.textColor || null
 }
 const expressPort = 8000
 const jimpOptions = {}
@@ -25,6 +35,8 @@ const createImageOptions = {
     width: 1,
     height: 1
   },
+  backgroundColor: null,
+  textColor: null,
   storePath: './public/image-store',
   /**
    *
@@ -75,8 +87,19 @@ export const createImageCallback = (response, fileName) => {
 }
 
 app.get('/:extension/:dimension', (req, res) => {
-  setImageDimension(req.params.dimension)
-  createImageOptions.extension = req.params.extension
+  extraceRequestParametersToCreateImageOptions(req.params)
+
+  createImageOptions.callbackOnGeneratedResponseObject = res
+
+  res
+    .status(200)
+    .contentType(mime.lookup(req.params.extension))
+  createImage(createImageOptions)
+})
+
+app.get('/:extension/:dimension/:backgroundColor/:textColor', (req, res) => {
+  extraceRequestParametersToCreateImageOptions(req.params)
+
   createImageOptions.callbackOnGeneratedResponseObject = res
 
   res

@@ -39,5 +39,61 @@ paths:
             minimum: 1
             maximum: 9999
             example: 1
+            
+  /{extension}/{width}x{height}/{backgroundColor}/{textColor}:
+    get:
+      summary: returns a image with the given extension, the width and height
+      description: with /png/10x10/cccccc/ffffff you get a 10px square png, with a gray background with white colored text.
+      parameters:
+        - name: extension
+          in: path
+          required: true
+          description: Generates a image with the requested mime-type. E. g. gif, jpg, jpeg, png, ...
+          schema:
+            type : string
+            minimum: 3
+            maximum: 4
+            example: gif
+        - name: width
+          in: path
+          required: true
+          description: Generates a image with desired width in pixel
+          schema:
+            type : integer
+            minimum: 1
+            maximum: 9999
+            example: 1
+        - name: height
+          in: path
+          required: true
+          description: Generates a image with desired height in pixel
+          schema:
+            type : integer
+            minimum: 1
+            maximum: 9999
+            example: 1
+        - name: placeholderType
+          in: path
+          required: false
+          description: Choose the type of image you want to generate. A blank image or select a image from a library
+          schema:
+            type : string
+            example: blank
+        - name: backgroundColor
+          in: path
+          required: false
+          description: Generates a image with desired background color.If this parameter is not send, a default color will be used
+          schema:
+            type : string
+            length: 6
+            example: 666666
+        - name: textColor
+          in: path
+          required: false
+          description: Generates a text on the image with desired color. If this parameter is not send, no text will be writen on the image
+          schema:
+            type : string
+            length: 6
+            example: ff0000
       responses:
         '200':    # status code
