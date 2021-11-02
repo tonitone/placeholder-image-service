@@ -29,6 +29,31 @@ const setImagePath = path => {
 
 /**
  *
+ * @param {object} image
+ * @param {object} options
+ * @returns {object}
+ */
+const callbackWriteImage = (image, options) => {
+  return image.write(
+    getImagePath(),
+    function () {
+      if (typeof options.callbackOnGenerated === 'function') {
+        if (options.callbackOnGeneratedResponseObject) {
+          options.callbackOnGenerated(
+            {
+              responseObject: options.callbackOnGeneratedResponseObject,
+              imagePath: getImagePath()
+            }
+          )
+        } else {
+          options.callbackOnGenerated()
+        }
+      }
+    }
+  )
+}
+/**
+ *
  * @param {object} options image options for image generations
  */
 export const createImage = (options = {}) => {
@@ -61,22 +86,6 @@ export const createImage = (options = {}) => {
       image.print(font, x, y, message)
       return image
     }).then(image => {
-      return image.write(
-        getImagePath(),
-        function () {
-          if (typeof options.callbackOnGenerated === 'function') {
-            if (options.callbackOnGeneratedResponseObject) {
-              options.callbackOnGenerated(
-                {
-                  responseObject: options.callbackOnGeneratedResponseObject,
-                  imagePath: getImagePath()
-                }
-              )
-            } else {
-              options.callbackOnGenerated()
-            }
-          }
-        }
-      )
+      return callbackWriteImage(image, options)
     })
 }
