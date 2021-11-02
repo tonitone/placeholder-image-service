@@ -58,10 +58,10 @@ const callbackWriteImage = (image, options) => {
  */
 export const createImage = (options = {}) => {
   options = Object.assign(defaults, options)
-  options.fileName = `${options.dimension.width}_${options.dimension.height}_${options.backgroundColor}.${options.extension}`
-  const message = `${options.dimension.width} X ${options.dimension.height}`
-  const x = 10
-  const y = 10
+  options.fileName = `${options.dimensions.width}x${options.dimensions.height}_${options.backgroundColor}.${options.extension}`
+  const message = `${options.dimensions.width} X ${options.dimensions.height}`
+  const x = 1
+  const y = 1
 
   const isLightBackground = Color('#' + options.backgroundColor).isLight()
 
@@ -73,8 +73,8 @@ export const createImage = (options = {}) => {
   }
 
   const image = new Jimp(
-    options.dimension.width,
-    options.dimension.height,
+    options.dimensions.width,
+    options.dimensions.height,
     options.backgroundColor,
     (err) => {
       if (err) throw (err)

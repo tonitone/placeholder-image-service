@@ -12,7 +12,7 @@ describe('getParameters', () => {
     ).toEqual(
       {
         extension: 'png',
-        dimension: {
+        dimensions: {
           width: '640',
           height: '480'
         },

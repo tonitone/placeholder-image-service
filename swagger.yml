@@ -2,25 +2,29 @@ openapi: 3.0.0
 info:
   title: Placeholderimage generator API
   description: Just for learning fun.
-  version: 0.0.7
+  version: 0.0.8
 servers:
-  - url: http://localhost:6565/v1
+  - url: http://localhost:8000
     description: Optional server description is not truly available
-paths: 
+paths:
+  /placeholder:
+    get:
+      summary: returns a 1px grey png
+      description: You can use this to create a 1x1 Pixel sized placeholder that you can strech with width and height attributes. <img src="http://localhost:8000/placeholder" width=200 height=100>
   /{extension}/{width}x{height}:
     get:
       summary: returns a image with the given extension, the width and height
-      description: with /gif/1x1/ you get a small transparent spacer gif that you can resize in side your HTML with <img src=http://localhost:6565/gif/1x1/ width=3 height=3>
+      description: with /png/200x100/ you get a small png that you can resize in side your HTML with <img src=http://localhost:8000/png/200x100/>
       parameters:
         - name: extension
           in: path
           required: true
-          description: Generates a image with the requested mime-type. E. g. gif, jpg, jpeg, png, ...
+          description: Generates a image with the requested mime-type. E. g. jpg, jpeg, png, ...
           schema:
             type : string
             minimum: 3
             maximum: 4
-            example: gif
+            example: png
         - name: width
           in: path
           required: true
@@ -40,20 +44,20 @@ paths:
             maximum: 9999
             example: 1
             
-  /{extension}/{width}x{height}/{backgroundColor}/{textColor}:
+  /{extension}/{width}x{height}/{backgroundColor}:
     get:
       summary: returns a image with the given extension, the width and height
-      description: with /png/10x10/cccccc/ffffff you get a 10px square png, with a gray background with white colored text.
+      description: with /png/10x10/cccccc you get a 10px square png, with a gray background. The text-color will be choosen by the contrast to the wished backgroundColor
       parameters:
         - name: extension
           in: path
           required: true
-          description: Generates a image with the requested mime-type. E. g. gif, jpg, jpeg, png, ...
+          description: Generates a image with the requested mime-type. E. g. jpg, jpeg, png, ...
           schema:
             type : string
             minimum: 3
             maximum: 4
-            example: gif
+            example: png
         - name: width
           in: path
           required: true
@@ -72,13 +76,6 @@ paths:
             minimum: 1
             maximum: 9999
             example: 1
-        - name: placeholderType
-          in: path
-          required: false
-          description: Choose the type of image you want to generate. A blank image or select a image from a library
-          schema:
-            type : string
-            example: blank
         - name: backgroundColor
           in: path
           required: false
@@ -87,13 +84,5 @@ paths:
             type : string
             length: 6
             example: 666666
-        - name: textColor
-          in: path
-          required: false
-          description: Generates a text on the image with desired color. If this parameter is not send, no text will be writen on the image
-          schema:
-            type : string
-            length: 6
-            example: ff0000
       responses:
         '200':    # status code

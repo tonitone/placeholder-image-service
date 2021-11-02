@@ -16,8 +16,10 @@ The generated images are placed in:
 `node src/cli/index.js /png/640x480/layout:blank,bg-color:ff9900,color:000000/`
 
 ### Web based
-Start the server and then go to:
-http://localhost:8000/png/20x20
+Start the server and then go to on of these URLs:
+- http://localhost:8000/placeholder
+- http://localhost:8000/png/20x20
+- http://localhost:8000/png/20x20/ff9900
 
 ## Api
 Start the server and then go to:

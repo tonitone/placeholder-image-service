@@ -21,22 +21,20 @@ export const returnDimensions = dimension => {
  *
  * @param {object} parameters request parameters "req.params"
  */
-export const extraceRequestParametersToCreateImageOptions = parameters => {
-  createImageOptions.dimension = returnDimensions(parameters.dimension)
-  createImageOptions.extension = parameters.extension
-  createImageOptions.backgroundColor = parameters.backgroundColor || null
-  createImageOptions.textColor = parameters.textColor || null
+export const extractRequestParametersToCreateImageOptions = parameters => {
+  createImageOptions = Object.assign(createImageOptions, parameters)
+  createImageOptions.dimensions = returnDimensions(parameters.dimension)
 }
 const expressPort = 8000
 const jimpOptions = {}
-const createImageOptions = {
+let createImageOptions = {
   extension: 'png',
-  dimension: {
+  dimensions: {
     width: 1,
     height: 1
   },
-  backgroundColor: null,
-  textColor: null,
+  backgroundColor: 'cccccc',
+  textColor: '000000',
   storePath: './public/image-store',
   /**
    *
@@ -72,21 +70,29 @@ app.get('/', (req, res) => {
   })
 })
 
-/**
- *
- * @param {object} response
- * @param {string} fileName
- */
-export const createImageCallback = (response, fileName) => {
-  response.sendFile(
-    path.resolve(fileName),
-    jimpOptions
-  )
-  return false
-}
+app.get('/placeholder', (req, res) => {
+  extractRequestParametersToCreateImageOptions({
+    dimension: '1x1',
+    extension: 'png'
+  })
+
+  createImageOptions.callbackOnGeneratedResponseObject = res
+
+  res
+    .status(200)
+    .contentType(mime.lookup(createImageOptions.extension))
+  createImage(createImageOptions)
+})
 
 app.get('/:extension/:dimension', (req, res) => {
-  extraceRequestParametersToCreateImageOptions(req.params)
+  if (req.params.extension === 'gif') {
+    return res.status(200).send({
+      success: 'false',
+      message: 'we don\'t support gif'
+    })
+  }
+
+  extractRequestParametersToCreateImageOptions(req.params)
 
   createImageOptions.callbackOnGeneratedResponseObject = res
 
@@ -96,8 +102,8 @@ app.get('/:extension/:dimension', (req, res) => {
   createImage(createImageOptions)
 })
 
-app.get('/:extension/:dimension/:backgroundColor/:textColor', (req, res) => {
-  extraceRequestParametersToCreateImageOptions(req.params)
+app.get('/:extension/:dimension/:backgroundColor', (req, res) => {
+  extractRequestParametersToCreateImageOptions(req.params)
 
   createImageOptions.callbackOnGeneratedResponseObject = res
 
@@ -106,5 +112,4 @@ app.get('/:extension/:dimension/:backgroundColor/:textColor', (req, res) => {
     .contentType(mime.lookup(req.params.extension))
   createImage(createImageOptions)
 })
-
 app.listen(expressPort)

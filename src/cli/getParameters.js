@@ -13,7 +13,7 @@ export const getParameters = (params) => {
 
   return {
     extension: matches[1],
-    dimension: {
+    dimensions: {
       width: matches[2],
       height: matches[3]
     },
