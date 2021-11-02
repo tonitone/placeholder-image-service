@@ -50,7 +50,6 @@ const createImageOptions = {
   },
   callbackOnGeneratedResponseObject: null
 }
-export const getCreateImageOptions = _ => createImageOptions
 
 const swaggerDocument = YAML.parse(
   fs.readFileSync('./swagger.yml', 'utf8')
