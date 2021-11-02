@@ -12,8 +12,8 @@
     "eslint.workingDirectories": [
         "./",
         "./src/**/*",
-        "eslint.format.enable": true,
     ],
+    "eslint.format.enable": true,
     "[jsonc]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
