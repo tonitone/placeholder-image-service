@@ -45,6 +45,7 @@
     "jest": "^27.3.1"
   },
   "dependencies": {
+    "color": "^4.0.1",
     "express": "^4.17.1",
     "jimp": "^0.16.1",
     "mime-types": "^2.1.33",

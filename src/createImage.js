@@ -1,9 +1,12 @@
 import Jimp from 'jimp'
+import Color from 'color'
 import fs from 'fs'
 
 const defaults = {
   storePath: '../public/image-store',
-  backgroundColor: 'CCCCCC'
+  backgroundColor: 'CCCCCC',
+  textColor: '000000',
+  fileName: null
 }
 
 let imagePath = ''
@@ -18,7 +21,7 @@ const getImagePath = () => {
 
 /**
  *
- * @param {string} path sets tze imagePath
+ * @param {string} path sets ths imagePath
  */
 const setImagePath = path => {
   imagePath = path
@@ -26,17 +29,18 @@ const setImagePath = path => {
 
 /**
  *
- * @param {object} options
- * @returns
+ * @param {object} options image options for image generations
  */
 export const createImage = (options = {}) => {
   options = Object.assign(defaults, options)
-  const fileName = `${options.dimension.width}_${options.dimension.height}_${options.backgroundColor}`
+  options.fileName = `${options.dimension.width}_${options.dimension.height}_${options.backgroundColor}.${options.extension}`
   const message = `${options.dimension.width} X ${options.dimension.height}`
   const x = 10
   const y = 10
 
-  setImagePath(`${options.storePath}/${fileName}.${options.extension}`)
+  const isLightBackground = Color(options.backgroundColor).isLight()
+
+  setImagePath(`${options.storePath}/${options.fileName}`)
 
   if (options.isCli && fs.existsSync(getImagePath())) {
     console.log('Image exists, we won\'t generate a new one!')
@@ -47,11 +51,12 @@ export const createImage = (options = {}) => {
     options.dimension.width,
     options.dimension.height,
     options.backgroundColor,
-    (err, image) => {
+    (err) => {
       if (err) throw (err)
-    })
+    }
+  )
 
-  Jimp.loadFont(Jimp.FONT_SANS_8_BLACK)
+  Jimp.loadFont(isLightBackground ? Jimp.FONT_SANS_8_BLACK : Jimp.FONT_SANS_8_WHITE)
     .then(font => {
       image.print(font, x, y, message)
       return image
