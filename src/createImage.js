@@ -63,7 +63,7 @@ export const createImage = (options = {}) => {
   const x = 10
   const y = 10
 
-  const isLightBackground = Color(options.backgroundColor).isLight()
+  const isLightBackground = Color('#' + options.backgroundColor).isLight()
 
   setImagePath(`${options.storePath}/${options.fileName}`)
 
