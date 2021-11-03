@@ -13,13 +13,13 @@ The generated images are placed in:
 `public/image-store`
 
 ### CLI based
-`node src/cli/index.js /png/640x480/bgcolor:ff0000/`
+`node src/cli/index.js /png/640x480/color/ff0000`
 
 ### Web based
 Start the server and then go to on of these URLs:
 - http://localhost:8000/placeholder
 - http://localhost:8000/png/20x20
-- http://localhost:8000/png/20x20/ff9900
+- http://localhost:8000/png/20x20/color/ff9900
 
 ## Api
 Start the server and then go to:

@@ -5,7 +5,7 @@ const timerDescription = 'Image generated in'
 if (process.argv.length !== 3) {
   console.log('no arguments!')
   console.log('test with this:')
-  console.log('node index.js /png/640x480/layout:blank,color:000000,bg-color:ff0000/')
+  console.log('node index.js /png/640x480/color/ff0000')
   process.exit(1)
 }
 

@@ -102,7 +102,7 @@ app.get('/:extension/:dimension', (req, res) => {
   createImage(createImageOptions)
 })
 
-app.get('/:extension/:dimension/:backgroundColor', (req, res) => {
+app.get('/:extension/:dimension/color/:backgroundColor', (req, res) => {
   extractRequestParametersToCreateImageOptions(req.params)
 
   createImageOptions.callbackOnGeneratedResponseObject = res
