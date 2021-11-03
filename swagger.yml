@@ -44,10 +44,10 @@ paths:
             maximum: 9999
             example: 1
             
-  /{extension}/{width}x{height}/{backgroundColor}:
+  /{extension}/{width}x{height}/color/{color}:
     get:
       summary: returns a image with the given extension, the width and height
-      description: with /png/10x10/cccccc you get a 10px square png, with a gray background. The text-color will be choosen by the contrast to the wished backgroundColor
+      description: with /png/50x50/color/ff0000 you get a 50px square png, with a red background. The text-color will be choosen by the contrast to the wished color. Example output <img src=http://localhost:8000/png/50x50/color/ff0000>
       parameters:
         - name: extension
           in: path
@@ -76,7 +76,7 @@ paths:
             minimum: 1
             maximum: 9999
             example: 1
-        - name: backgroundColor
+        - name: color
           in: path
           required: false
           description: Generates a image with desired background color.If this parameter is not send, a default color will be used
