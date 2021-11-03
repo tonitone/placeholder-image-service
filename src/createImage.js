@@ -5,7 +5,6 @@ import fs from 'fs'
 const defaults = {
   storePath: '../public/image-store',
   backgroundColor: 'CCCCCC',
-  textColor: '000000',
   fileName: null
 }
 
@@ -56,21 +55,10 @@ const callbackWriteImage = (image, options) => {
  *
  * @param {object} options image options for image generations
  */
-export const createImage = (options = {}) => {
-  options = Object.assign(defaults, options)
-  options.fileName = `${options.dimensions.width}x${options.dimensions.height}_${options.backgroundColor}.${options.extension}`
+const createImageFromScratch = (options) => {
   const message = `${options.dimensions.width} X ${options.dimensions.height}`
   const x = 1
   const y = 1
-
-  const isLightBackground = Color('#' + options.backgroundColor).isLight()
-
-  setImagePath(`${options.storePath}/${options.fileName}`)
-
-  if (options.isCli && fs.existsSync(getImagePath())) {
-    console.log('Image exists, we won\'t generate a new one!')
-    console.log('You could delete all images. Use: yarn run deletePublicImageStore')
-  }
 
   const image = new Jimp(
     options.dimensions.width,
@@ -80,6 +68,7 @@ export const createImage = (options = {}) => {
       if (err) throw (err)
     }
   )
+  const isLightBackground = Color('#' + options.backgroundColor).isLight()
 
   Jimp.loadFont(isLightBackground ? Jimp.FONT_SANS_8_BLACK : Jimp.FONT_SANS_8_WHITE)
     .then(font => {
@@ -88,4 +77,49 @@ export const createImage = (options = {}) => {
     }).then(image => {
       return callbackWriteImage(image, options)
     })
+}
+
+const createImageFromUrl = (options) => {
+  Jimp.read({
+    url: options.imageUrl, // Required!
+    headers: {}
+  }).then(image => {
+    image.cover(
+      parseInt(options.dimensions.width),
+      parseInt(options.dimensions.height),
+      parseInt(Jimp.RESIZE_BILINEAR),
+      function () {
+        callbackWriteImage(image, options)
+      }
+    )
+    return image
+  })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+const createImageFunctions = {
+  fromScratch: createImageFromScratch,
+  fromUrl: createImageFromUrl
+}
+
+/**
+ *
+ * @param {object} options
+ */
+export const createImage = (options = {}) => {
+  options = Object.assign(defaults, options)
+  options.fileName = `${options.dimensions.width}x${options.dimensions.height}_${options.backgroundColor}.${options.extension}`
+
+  setImagePath(`${options.storePath}/${options.fileName}`)
+
+  if (options.isCli && fs.existsSync(getImagePath())) {
+    console.log('Image exists, we won\'t generate a new one!')
+    console.log('You could delete all images. Use: yarn run deletePublicImageStore')
+  }
+
+  const createImageFunction = createImageFunctions[options.generationType]
+
+  if (!createImageFunction) throw new Error('Invalid createImageFunction ' + options.generationType); createImageFunction(options)
 }
