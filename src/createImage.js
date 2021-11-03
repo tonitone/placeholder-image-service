@@ -4,7 +4,7 @@ import fs from 'fs'
 
 const defaults = {
   storePath: '../public/image-store',
-  backgroundColor: 'CCCCCC',
+  backgroundColor: 'cccccc',
   fileName: null
 }
 
