@@ -20,6 +20,7 @@ Start the server and then go to on of these URLs:
 - http://localhost:8000/placeholder
 - http://localhost:8000/png/20x20
 - http://localhost:8000/png/20x20/ff9900
+- http://localhost:8000/png/100x400/search/nature+tree
 
 ## Api
 Start the server and then go to:
