@@ -4,6 +4,7 @@ import YAML from 'yaml'
 import express from 'express'
 import mime from 'mime-types'
 import swaggerUi from 'swagger-ui-express'
+import { getImages } from './api/pixabay.js'
 import { createImage } from './createImage.js'
 
 /**
@@ -34,7 +35,6 @@ let createImageOptions = {
     height: 1
   },
   backgroundColor: 'cccccc',
-  textColor: '000000',
   storePath: './public/image-store',
   /**
    *
@@ -46,6 +46,8 @@ let createImageOptions = {
       jimpOptions
     )
   },
+  generationType: null,
+  imageUrl: null,
   callbackOnGeneratedResponseObject: null
 }
 
@@ -56,6 +58,12 @@ const app = express()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+// csp
+app.use(function (req, res, next) {
+  res.setHeader('Content-Security-Policy', "default-src 'self' pixabay.com")
+  return next()
+})
 
 // public folder
 app.use('/public', express.static('./public'))
@@ -106,10 +114,33 @@ app.get('/:extension/:dimension/color/:backgroundColor', (req, res) => {
   extractRequestParametersToCreateImageOptions(req.params)
 
   createImageOptions.callbackOnGeneratedResponseObject = res
-
+  createImageOptions.generationType = 'fromScratch'
   res
     .status(200)
     .contentType(mime.lookup(req.params.extension))
   createImage(createImageOptions)
+})
+
+app.get('/:extension/:dimension/search/:queryString', (req, res, next) => {
+  extractRequestParametersToCreateImageOptions(req.params)
+  createImageOptions.callbackOnGeneratedResponseObject = res
+
+  createImageOptions.generationType = 'fromUrl'
+
+  try {
+    getImages(req.params.queryString).then(fetchedImageUrl => {
+      function getRandomInt (max) {
+        return Math.floor(Math.random() * max)
+      }
+
+      createImageOptions.imageUrl = fetchedImageUrl[getRandomInt(fetchedImageUrl.length)]
+      res
+        .status(200)
+        .contentType(mime.lookup(req.params.extension))
+      createImage(createImageOptions)
+    })
+  } catch (err) {
+    next(err)
+  }
 })
 app.listen(expressPort)

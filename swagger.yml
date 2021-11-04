@@ -84,5 +84,45 @@ paths:
             type : string
             length: 6
             example: 666666
+  /{extension}/{width}x{height}/search/{queryString}:
+    get:
+      summary: search for an image at pixabay with the queryString parameter and creates a placholder image with the disred dimensions
+      description: with /png/100x400/search/nature+tree you get a 100x400 pixel photo with the keywords "woman+car" 
+      parameters:
+        - name: extension
+          in: path
+          required: true
+          description: Generates a image with the requested mime-type. E. g. jpg, jpeg, png, ...
+          schema:
+            type : string
+            minimum: 3
+            maximum: 4
+            example: png
+        - name: width
+          in: path
+          required: true
+          description: Generates a image with desired width in pixel
+          schema:
+            type : integer
+            minimum: 1
+            maximum: 9999
+            example: 1
+        - name: height
+          in: path
+          required: true
+          description: Generates a image with desired height in pixel
+          schema:
+            type : integer
+            minimum: 1
+            maximum: 9999
+            example: 1
+        - name: queryString
+          in: path
+          required: true
+          description: this parameter hold the search query against the pixabay api
+          schema:
+            type : string
+            length: 6
+            example: nature+tree
       responses:
         '200':    # status code
