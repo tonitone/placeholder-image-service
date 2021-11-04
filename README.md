@@ -13,7 +13,7 @@ The generated images are placed in:
 `public/image-store`
 
 ### CLI based
-`node src/cli/index.js /png/640x480/bgcolor:ff0000/`
+`node src/cli/index.js /png/640x480/color/ff0000`
 
 ### Web based
 Start the server and then go to on of these URLs:

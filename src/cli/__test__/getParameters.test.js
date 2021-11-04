@@ -6,7 +6,7 @@ describe('getParameters', () => {
     expect(imageParameters.error).toBe('no usable parameters found')
   })
   test('should contain no usable parameters', () => {
-    const imageParameters = getParameters('/png/640x480/bgcolor:ff0000/')
+    const imageParameters = getParameters('/png/640x480/color/ff0000')
     expect(
       imageParameters
     ).toEqual(
