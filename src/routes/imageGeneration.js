@@ -11,6 +11,6 @@ routeImageGeneration.get('/placeholder', imageByPlaceholder)
 
 routeImageGeneration.get('/:extension/:dimension', imageByExtensionDimension)
 
-routeImageGeneration.get('/:extension/:dimension/:backgroundColor', imageByExtensionDimensionColor)
+routeImageGeneration.get('/:extension/:dimension/color/:backgroundColor', imageByExtensionDimensionColor)
 
 routeImageGeneration.get('/:extension/:dimension/search/:queryString', imageByExtensionDimenstionUrl)

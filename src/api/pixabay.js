@@ -1,12 +1,4 @@
 import fetch from 'node-fetch'
-
-const apiKeyFilePath = './pixabay.api-key.js'
-const apiKey = import(apiKeyFilePath).then(fileContent => {
-  return fileContent.apiKey
-}).catch(error =>
-  console.error(apiKeyFilePath + ' not found!', error)
-)
-
 const fetchedImageUrl = []
 
 /**
@@ -14,7 +6,7 @@ const fetchedImageUrl = []
  * @param {string} queryString
  * @returns {object} array of fetched images urls
  */
-export const getImages = async queryString => {
+export const getImages = async (queryString, apiKey) => {
   try {
     const url = 'https://pixabay.com/api/?key=' + apiKey + '&q=' + encodeURIComponent(queryString)
 
