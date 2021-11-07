@@ -42,5 +42,7 @@ export let createImageOptions = {
       jimpOptions
     )
   },
+  generationType: 'fromScratch',
+  imageUrl: null,
   callbackOnGeneratedResponseObject: null
 }

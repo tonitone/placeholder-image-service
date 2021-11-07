@@ -1,6 +1,9 @@
 import { getParameters } from './getParameters.js'
-import { createImage } from '../createImage.js'
+import { createImage } from '../model/createImage.js'
+import { createImageOptions } from '../model/imageGeneration.js'
+
 const timerDescription = 'Image generated in'
+const options = Object.assign({}, createImageOptions, getParameters(process.argv[2]))
 
 if (process.argv.length !== 3) {
   console.log('no arguments!')
@@ -11,13 +14,12 @@ if (process.argv.length !== 3) {
 
 console.time(timerDescription)
 
-const imageParameters = getParameters(process.argv[2])
-imageParameters.storePath = './public/image-store'
-imageParameters.isCli = true
-imageParameters.callbackOnGenerated = _ => {
+options.storePath = './public/image-store'
+options.isCli = true
+options.callbackOnGenerated = _ => {
   console.timeEnd(timerDescription)
 }
 
-if (!imageParameters.error) {
-  createImage(imageParameters)
+if (!options.error) {
+  createImage(options)
 }

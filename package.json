@@ -4,6 +4,14 @@
   "type": "module",
   "description": "placeholder image generator",
   "main": "index.js",
+  "jest": {
+    "timers": "modern",
+    "testEnvironment": "node",
+    "transform": {},
+    "transformIgnorePatterns": [
+      "node_modules/(?!variables/.*)"
+    ]
+  },
   "scripts": {
     "createTestImage": "node src/cli/index.js /png/640x480/color/ff9900",
     "server:start": "pm2 start src/server.js",
@@ -13,7 +21,7 @@
     "lint": "eslint . --ext .js --ignore-path .gitignore",
     "lint:fix": "yarn lint --fix",
     "deletePublicImageStore": "rm public/image-store/*",
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": "Toni Ivanisevic <030toni@gmail.com>",
   "license": "MIT",
@@ -35,14 +43,19 @@
   },
   "homepage": "https://github.com/tonitone/placeholder-image-generator#readme",
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "@babel/preset-env": "^7.16.0",
+    "babel-jest": "^27.3.1",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-standard": "^5.0.0",
-    "jest": "^27.3.1"
+    "jest": "^27.3.1",
+    "supertest": "^6.1.6"
   },
   "dependencies": {
     "color": "^4.0.1",

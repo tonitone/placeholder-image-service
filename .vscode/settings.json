@@ -15,7 +15,7 @@
     ],
     "eslint.format.enable": true,
     "[jsonc]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[javascript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
@@ -30,6 +30,6 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "**/node_modules": true
+        "**/node_modules": false
     }
 }
