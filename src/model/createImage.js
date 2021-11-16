@@ -1,6 +1,7 @@
-import Jimp from 'jimp'
 import Color from 'color'
 import fs from 'fs'
+import Jimp from 'jimp'
+import mime from 'mime-types'
 
 const defaults = {
   storePath: '../public/image-store',
@@ -48,6 +49,9 @@ const callbackWriteImage = (image, options) => {
           options.callbackOnGenerated()
         }
       }
+      options.callbackOnGeneratedResponseObject
+        .status(200)
+        .contentType(mime.lookup(options.extension))
     }
   )
 }
@@ -89,7 +93,7 @@ const createImageFromUrl = (options) => {
       parseInt(options.dimensions.height),
       parseInt(Jimp.RESIZE_BILINEAR),
       function () {
-        callbackWriteImage(image, options)
+        return callbackWriteImage(image, options)
       }
     )
     return image
@@ -121,5 +125,5 @@ export const createImage = (options = {}) => {
 
   const createImageFunction = createImageFunctions[options.generationType]
 
-  if (!createImageFunction) throw new Error('Invalid createImageFunction ' + options.generationType); createImageFunction(options)
+  if (!createImageFunction) throw new Error('Invalid createImageFunction ' + options.generationType); return createImageFunction(options)
 }
