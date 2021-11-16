@@ -16,6 +16,20 @@ export const returnDimensions = dimension => {
 
 /**
  *
+ * @param {object} request
+ * @param {object} response
+ * @returns response
+ */
+export const returnGifNotAllowedResponse = (request, response) => {
+  if (request.params.extension === 'gif') {
+    return response.status(200).send({
+      success: 'false',
+      message: 'we don\'t support gif'
+    })
+  }
+}
+/**
+ *
  * @param {object} parameters request parameters "req.params"
  */
 export const extractRequestParametersToCreateImageOptions = parameters => {

@@ -1,4 +1,5 @@
-import { app } from './server.js'
+import { server } from './server.js'
 const expressPort = 8000
+server.listen(expressPort)
 
-app.listen(expressPort)
+export default server

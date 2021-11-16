@@ -5,8 +5,8 @@
   "description": "placeholder image generator",
   "main": "index.js",
   "jest": {
-    "timers": "modern",
-    "testEnvironment": "node",
+    "timers": "legacy",
+    "testEnvironment": "jest-environment-node",
     "transform": {},
     "transformIgnorePatterns": [
       "node_modules/(?!variables/.*)"
