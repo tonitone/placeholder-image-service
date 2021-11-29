@@ -12,10 +12,10 @@
   },
   "scripts": {
     "createTestImage": "node src/cli/index.js /png/640x480/color/ff9900",
-    "server:start": "pm2 start src/server.js",
+    "server:start": "pm2 start src/app.js",
     "server:logs": "pm2 logs --no-daemon",
     "server:stop": "pm2 delete 'all'",
-    "server:restart": "yarn server:stop; yarn server:start",
+    "server:restart": "pm2 restart all",
     "lint": "eslint . --ext .js --ignore-path .gitignore",
     "lint:fix": "yarn lint --fix",
     "deletePublicImageStore": "rm public/image-store/*",
