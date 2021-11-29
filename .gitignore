@@ -3,3 +3,4 @@ node_modules
 public/*
 coverage
 src/api/pixabay.api-key.json
+.idea/

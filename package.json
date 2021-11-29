@@ -1,6 +1,6 @@
 {
   "name": "placeholder-image-generator",
-  "version": "0.0.8alpha",
+  "version": "0.0.8-alpha",
   "type": "module",
   "description": "placeholder image generator",
   "main": "index.js",
@@ -8,9 +8,7 @@
     "timers": "legacy",
     "testEnvironment": "jest-environment-node",
     "transform": {},
-    "transformIgnorePatterns": [
-      "node_modules/(?!variables/.*)"
-    ]
+    "injectGlobals": true
   },
   "scripts": {
     "createTestImage": "node src/cli/index.js /png/640x480/color/ff9900",
@@ -21,7 +19,10 @@
     "lint": "eslint . --ext .js --ignore-path .gitignore",
     "lint:fix": "yarn lint --fix",
     "deletePublicImageStore": "rm public/image-store/*",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --trace-warnings --experimental-modules --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
+    "test:watch": "yarn run test --watch",
+    "test:detectOpenHandles": "yarn run test --runInBand --detectOpenHandles",
+    "test:detectOpenHandles:watch": "yarn run test:detectOpenHandles --watch"
   },
   "author": "Toni Ivanisevic <030toni@gmail.com>",
   "license": "MIT",
@@ -43,10 +44,9 @@
   },
   "homepage": "https://github.com/tonitone/placeholder-image-generator#readme",
   "devDependencies": {
-    "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
-    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "babel-jest": "^27.3.1",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
