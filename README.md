@@ -1,8 +1,36 @@
 # placeholder-image-generator
-
+> A service to generate placeholder images.
+> 
 [![CI](https://github.com/tonitone/placeholder-image-generator/actions/workflows/yarn-action.yml/badge.svg)](https://github.com/tonitone/placeholder-image-generator/actions/workflows/yarn-action.yml)
 
-A fun project to generate placeholder images.
+## Table of Contents
+
+<!-- toc -->
+
+- [placeholder-image-generator](#placeholder-image-generator)
+  - [Table of Contents](#table-of-contents)
+  - [About](#about)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [CLI based](#cli-based)
+    - [Web based](#web-based)
+  - [Api](#api)
+  - [Test](#test)
+  - [Server](#server)
+    - [Start](#start)
+    - [Stop](#stop)
+    - [Restart](#restart)
+    - [Logs](#logs)
+
+<!-- tocstop -->
+
+## About
+A service to generate placeholder images.
+_This project is only for fun and learning purposes._
+
+Possible features will be:
+- a UI to configure the placeholder over a form
+- save all generated image-URLs in a db
 
 ## Install
 `yarn install`
@@ -35,7 +63,7 @@ Start the server and then go to:
 `yarn test`
 
 ## Server
-`node src/server.js`
+`node src/app.js`
 
 Or use the following `pm2` based run scripts
 
