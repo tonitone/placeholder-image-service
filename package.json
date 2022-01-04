@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "color": "^4.1.0",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "jimp": "^0.16.1",
     "mime-types": "^2.1.33",
     "node-fetch": "^3.0.0",
