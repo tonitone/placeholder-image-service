@@ -45,7 +45,7 @@
   "homepage": "https://github.com/tonitone/placeholder-image-generator#readme",
   "devDependencies": {
     "@babel/core": "^7.16.7",
-    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
     "@babel/preset-env": "^7.16.7",
     "babel-jest": "^27.4.6",
     "eslint": "^7.32.0",
