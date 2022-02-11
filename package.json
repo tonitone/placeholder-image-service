@@ -59,7 +59,7 @@
     "supertest": "^6.2.2"
   },
   "dependencies": {
-    "color": "^4.2.0",
+    "color": "^4.2.1",
     "express": "^4.17.2",
     "jimp": "^0.16.1",
     "mime-types": "^2.1.33",
