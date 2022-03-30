@@ -43,8 +43,6 @@ export let createImageOptions = {
     width: 1,
     height: 1
   },
-  backgroundColor: 'cccccc',
-  textColor: '000000',
   storePath: './public/image-store',
   /**
    *

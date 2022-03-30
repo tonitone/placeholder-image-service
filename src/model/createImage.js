@@ -5,7 +5,7 @@ import mime from 'mime-types'
 
 const defaults = {
   storePath: '../public/image-store',
-  backgroundColor: 'cccccc',
+  backgroundColor: 'efefef',
   fileName: null
 }
 
@@ -103,6 +103,24 @@ const createImageFromUrl = (options) => {
     })
 }
 
+/**
+ *
+ * @param {string} imagePath
+ * @param {object} imageOptions
+ */
+const returnExistingImage = (imagePath, imageOptions) => {
+  fs.readFile(imagePath, function (err, data) {
+    if (err) {
+      throw err // Fail if the file can't be read.
+    }
+    imageOptions.callbackOnGeneratedResponseObject.writeHead(
+      200,
+      { 'Content-Type': mime.lookup(imageOptions.extension) }
+    )
+    imageOptions.callbackOnGeneratedResponseObject.end(data) // Send the file data to the browser.
+  })
+}
+
 const createImageFunctions = {
   fromScratch: createImageFromScratch,
   fromUrl: createImageFromUrl
@@ -111,6 +129,7 @@ const createImageFunctions = {
 /**
  *
  * @param {object} options
+ * @returns
  */
 export const createImage = (options = {}) => {
   options = Object.assign(defaults, options)
@@ -118,9 +137,15 @@ export const createImage = (options = {}) => {
 
   setImagePath(`${options.storePath}/${options.fileName}`)
 
-  if (options.isCli && fs.existsSync(getImagePath())) {
-    console.log('Image exists, we won\'t generate a new one!')
-    console.log('You could delete all images. Use: yarn run deletePublicImageStore')
+  if (fs.existsSync(getImagePath())) {
+    if (options.isCli) {
+      console.log('Image exists, we won\'t generate a new one!')
+      console.log(getImagePath())
+      console.log('You could delete all images. Use: yarn run deletePublicImageStore')
+    } else {
+      returnExistingImage(getImagePath(), options)
+    }
+    return false
   }
 
   const createImageFunction = createImageFunctions[options.generationType]

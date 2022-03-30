@@ -6,7 +6,12 @@ export const imageByExtensionDimension = (req, res) => {
 
   extractRequestParametersToCreateImageOptions(req.params)
 
-  createImageOptions.callbackOnGeneratedResponseObject = res
-
-  return createImage(createImageOptions)
+  return createImage(
+    {
+      ...createImageOptions,
+      backgroundColor: 'efefef',
+      textColor: 'ff0000',
+      callbackOnGeneratedResponseObject: res
+    }
+  )
 }
