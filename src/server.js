@@ -10,9 +10,9 @@ server.use(express.json())
 server.get('/', (req, res) => {
   return res.status(200).send(
     {
-    apiDocsUrl: '/api-docs',
-    message: ':-D'
-  })
+      apiDocsUrl: '/api-docs',
+      message: ':-D'
+    })
 })
 
 // public folder
