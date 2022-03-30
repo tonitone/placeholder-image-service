@@ -12,6 +12,7 @@
   },
   "scripts": {
     "createTestImage": "node src/cli/index.js /png/640x480/color/ff9900",
+    "server:single": "node src/app.js",
     "server:start": "pm2 start src/app.js",
     "server:logs": "pm2 logs --no-daemon",
     "server:stop": "pm2 delete 'all'",
