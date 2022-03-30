@@ -8,16 +8,17 @@ server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 
 server.get('/', (req, res) => {
-  return res.status(200).send({
-    success: 'true',
+  return res.status(200).send(
+    {
+    apiDocsUrl: '/api-docs',
     message: ':-D'
   })
 })
 
 // public folder
+server.use('/api-docs', routeSwagger)
 server.use('/public', express.static('./public'))
 server.use('/', routeImageGeneration)
-server.use('/api-docs', routeSwagger)
 
 server.get('/test', (req, res) => {
   return res.status(200).json({ message: 'pass!' })

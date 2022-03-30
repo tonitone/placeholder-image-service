@@ -9,4 +9,4 @@ const swaggerDocument = YAML.parse(
   fs.readFileSync('./swagger.yml', 'utf8')
 )
 
-routeSwagger.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+routeSwagger.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))

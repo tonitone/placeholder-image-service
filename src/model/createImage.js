@@ -45,13 +45,13 @@ const callbackWriteImage = (image, options) => {
               imagePath: getImagePath()
             }
           )
+          options.callbackOnGeneratedResponseObject
+            .status(200)
+            .contentType(mime.lookup(options.extension))
         } else {
           options.callbackOnGenerated()
         }
       }
-      options.callbackOnGeneratedResponseObject
-        .status(200)
-        .contentType(mime.lookup(options.extension))
     }
   )
 }
