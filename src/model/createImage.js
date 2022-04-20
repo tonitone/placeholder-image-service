@@ -3,7 +3,7 @@ import fs from 'fs'
 import Jimp from 'jimp'
 import mime from 'mime-types'
 
-const defaults = {
+export const defaults = {
   storePath: '../public/image-store',
   backgroundColor: 'efefef',
   fileName: null
@@ -133,8 +133,6 @@ const createImageFunctions = {
  */
 export const createImage = (options = {}) => {
   options = Object.assign(defaults, options)
-  options.fileName = `${options.dimensions.width}x${options.dimensions.height}_${options.backgroundColor}.${options.extension}`
-
   setImagePath(`${options.storePath}/${options.fileName}`)
 
   if (fs.existsSync(getImagePath())) {
