@@ -20,13 +20,10 @@
     "lint": "eslint . --ext .js --ignore-path .gitignore",
     "lint:fix": "yarn lint --fix",
     "deletePublicImageStore": "rm public/image-store/*",
-    "jest": "node  --experimental-modules --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:trace-warnings": "yarn run jest --trace-warnings",
-    "test": "yarn run jest --runInBand",
-    "test:list": "yarn run jest --listTests",
-    "test:watch": "yarn run jest --watch",
-    "test:detectOpenHandles": "yarn run jest --runInBand --detectOpenHandles",
-    "test:detectOpenHandles:watch": "yarn run test:detectOpenHandles --watch"
+    "test": "node --experimental-modules --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:list": "yarn run test --listTests",
+    "test:watch": "yarn run test --watch",
+    "test:detectOpenHandles": "yarn run test --runInBand --detectOpenHandles"
   },
   "author": "Toni Ivanisevic <030toni@gmail.com>",
   "license": "MIT",
