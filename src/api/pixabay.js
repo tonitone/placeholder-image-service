@@ -8,7 +8,7 @@ const fetchedImageUrl = []
  */
 export const getImages = async (queryString, apiKey) => {
   try {
-    const url = 'https://pixabay.com/api/?key=' + apiKey + '&q=' + encodeURIComponent(queryString)
+    const url = 'https://pixabay.com/api/?key=' + apiKey + '&q=' + queryString
 
     await fetch(url).then(res => res.json()).then(data => {
       if (parseInt(data.totalHits) > 0) {
