@@ -1,9 +1,13 @@
 import { getParameters } from './getParameters.js'
 import { createImage } from '../model/createImage.js'
 import { createImageOptions } from '../model/imageGeneration.js'
+import { returnFileName } from '../model/fileName.js'
 
 const timerDescription = 'Image generated in'
 const options = Object.assign({}, createImageOptions, getParameters(process.argv[2]))
+
+options.fileNameSuffix = 'color_' + options.backgroundColor
+options.fileName = returnFileName(options)
 
 if (process.argv.length !== 3) {
   console.log('no arguments!')

@@ -47,7 +47,7 @@ export let createImageOptions = {
   },
   storePath: './public/image-store',
   /**
-   *
+   * A callback function that is called when the image is generated.
    * @param {object} options
    */
   callbackOnGenerated: (options) => {

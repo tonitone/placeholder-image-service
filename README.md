@@ -11,10 +11,10 @@
   - [Table of Contents](#table-of-contents)
   - [About](#about)
   - [Install](#install)
+  - [Api](#api)
   - [Usage](#usage)
     - [CLI based](#cli-based)
     - [Web based](#web-based)
-  - [Api](#api)
   - [Test](#test)
   - [Server](#server)
     - [Start](#start)
@@ -35,37 +35,54 @@ Possible features will be:
 ## Install
 `yarn install`
 
+## Api
+Start the server (e.g. `yarn run server:single`) and then go to:
+`http://localhost:8000/api-docs`
+
 ## Usage
 You can use it on CLI and web based.
-The generated images are placed in:
+The generated images are stored in:
 `public/image-store`
 
 ### CLI based
-`node src/cli/index.js /png/640x480/color/ff0000`
-
+| ![](readme-assets/400x40_color_ff9900.jpg) |
+|:--:| 
+| `node src/cli/index.js /jpg/400x40/color/ff9900` |
 ### Web based
-Start the server and then go to on of these URLs:
-- http://localhost:8000/placeholder (this demo-image is 1x1 pixel in gray. It's resized with img-attributes)
-  - <img height="200" src="readme-assets/placeholder.png" width="400"/>
-- http://localhost:8000/jpg/400x200
-  - ![](readme-assets/400x200.jpeg)
-- http://localhost:8000/png/400x200/color/ff0099
-  - ![](readme-assets/400x200_ff0099.png)
-- http://localhost:8000/png/400x200/search/nature+treenature+tree+food
-  - ![](readme-assets/400x200_nature-tree-food.png)
-  - The image is from pixabay. You need an account to get your own API-key. Copy the `src/api/pixabay.api-key.blank.json` to `src/api/pixabay.api-key.json` and add your key inside.
+Start the server (e.g. `yarn run server:start`) and then go to one of these URLs:
 
-## Api
-Start the server and then go to:
-`http://localhost:8000/api-docs`
+| <img height="200" src="readme-assets/1x1_color_efefef.png" width="400"/>
+|:--:| 
+| http://localhost:8000/placeholder |
+1x1 pixel image in gray, resized with img-attributes |
+
+
+| ![](readme-assets/400x200_color_efefef.jpg) |
+|:--:| 
+| http://localhost:8000/jpg/400x200 |
+
+
+| ![](readme-assets/400x200_color_ff0099.png) |
+|:--:| 
+| http://localhost:8000/png/400x200/color/ff0099 |
+
+
+| ![](readme-assets/400x200_search_nature+tree.png) |
+|:--:| 
+| http://localhost:8000/png/400x200/search/nature+tree |
+
+This image is from pixabay and you need an account to get your own API-key.
+
+Copy the `src/api/pixabay.api-key.blank.json` to `src/api/pixabay.api-key.json` and add your key inside. 
 
 ## Test
 `yarn test`
 
 ## Server
-`node src/app.js`
 
-Or use the following `pm2` based run scripts
+Start the server with `yarn run server:single`
+
+Or use the following `pm2` (Process Manager 2) based run scripts, with an built-in load balancer. `// ;-)`
 
 ### Start
 `yarn run server:start`

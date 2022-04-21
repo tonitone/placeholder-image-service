@@ -75,7 +75,7 @@ const createImageFromScratch = (options) => {
   )
   const isLightBackground = Color('#' + options.backgroundColor).isLight()
 
-  Jimp.loadFont(isLightBackground ? Jimp.FONT_SANS_8_BLACK : Jimp.FONT_SANS_8_WHITE)
+  Jimp.loadFont(isLightBackground ? Jimp.FONT_SANS_16_BLACK : Jimp.FONT_SANS_16_WHITE)
     .then(font => {
       image.print(font, x, y, message)
       return image
