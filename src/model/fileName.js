@@ -1,7 +1,8 @@
-
 /**
+ * It takes an object with a file name suffix, dimensions, and extension, and returns a file name with
+ * the dimensions, suffix, and extension
  * @param {object} options
- * @returns {string}
+ * @returns {string} A string that is the file name of the image.
  */
 export const returnFileName = (options) => {
   const findIllegalCharsExpression = /[/\\?%*:|"<>]/g

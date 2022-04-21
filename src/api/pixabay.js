@@ -2,9 +2,10 @@ import fetch from 'node-fetch'
 const fetchedImageUrl = []
 
 /**
- *
- * @param {string} queryString
- * @returns {object} array of fetched images urls
+ * It takes a query string and an API key as parameters, and returns an array of image URLs
+ * @param {string} queryString - The search term you want to search for.
+ * @param {string} apiKey - Your Pixabay API key
+ * @returns {object} An array of image URLs
  */
 export const getImages = async (queryString, apiKey) => {
   try {

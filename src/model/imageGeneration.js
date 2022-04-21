@@ -3,8 +3,9 @@ import path from 'path'
 const jimpOptions = {}
 
 /**
- *
- * @param {object} dimension
+ * It takes a string of the form `widthxheight` and returns an object with `width` and `height`
+ * properties
+ * @param {object} dimension An object with a width and height property.
  */
 export const returnDimensions = dimension => {
   const dimensions = dimension.split('x')
@@ -15,10 +16,10 @@ export const returnDimensions = dimension => {
 }
 
 /**
- *
+ * It returns a response if the extension of the image is gif
  * @param {object} request
  * @param {object} response
- * @returns response
+ * @returns A function that returns a response if the extension is gif
  */
 export const returnGifNotAllowedResponse = (request, response) => {
   if (request.params.extension === 'gif') {
@@ -28,8 +29,8 @@ export const returnGifNotAllowedResponse = (request, response) => {
     })
   }
 }
+
 /**
- *
  * @param {object} parameters request parameters "req.params"
  */
 export const extractRequestParametersToCreateImageOptions = parameters => {
@@ -37,6 +38,7 @@ export const extractRequestParametersToCreateImageOptions = parameters => {
   createImageOptions.dimensions = returnDimensions(parameters.dimension)
 }
 
+/* Creating an object with the default values for the image generation. */
 export let createImageOptions = {
   extension: 'png',
   dimensions: {

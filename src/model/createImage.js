@@ -28,10 +28,10 @@ const setImagePath = path => {
 }
 
 /**
- *
+ * It writes the image to the file system and then calls the callback function if it exists
  * @param {object} image
  * @param {object} options
- * @returns {object}
+ * @returns The image is being returned.
  */
 const callbackWriteImage = (image, options) => {
   return image.write(
@@ -55,8 +55,9 @@ const callbackWriteImage = (image, options) => {
     }
   )
 }
+
 /**
- *
+ * It creates a new image, writes a message to it, and then saves it to disk
  * @param {object} options image options for image generations
  */
 const createImageFromScratch = (options) => {
@@ -83,6 +84,10 @@ const createImageFromScratch = (options) => {
     })
 }
 
+/**
+ * It creates an image from another image
+ * @param {object} options
+ */
 const createImageFromUrl = (options) => {
   Jimp.read({
     url: options.imageUrl, // Required!
@@ -104,8 +109,8 @@ const createImageFromUrl = (options) => {
 }
 
 /**
- *
- * @param {string} imagePath
+ * If the image exists, send it to the browser
+ * @param {string} imagePath - The path to the image on the server.
  * @param {object} imageOptions
  */
 const returnExistingImage = (imagePath, imageOptions) => {
@@ -121,13 +126,14 @@ const returnExistingImage = (imagePath, imageOptions) => {
   })
 }
 
+/* It's creating an object with two properties. The properties are the names of the functions that are
+being passed in. */
 const createImageFunctions = {
   fromScratch: createImageFromScratch,
   fromUrl: createImageFromUrl
 }
 
 /**
- *
  * @param {object} options
  * @returns
  */
