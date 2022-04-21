@@ -7,8 +7,8 @@ import { createImageOptions, extractRequestParametersToCreateImageOptions, retur
 import { returnFileName } from '../model/fileName.js'
 
 /**
- * It creates a image with desired dimension, with a background image of query string result, searches
- * for images on Pixabay and returns it as a PNG
+ * It creates a image with desired dimension, with a background.
+ * The background image is taken from a Pixabay querystring request, against there API
  * @param {object} req - The request object
  * @param {object} res - The response object
  * @returns A function call from createImage
