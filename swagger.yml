@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Placeholderimage generator API
+  title: Placeholder Image Generator API
   description: Just for learning fun.
   version: 0.0.8
 servers:
@@ -9,12 +9,15 @@ servers:
 paths:
   /placeholder:
     get:
-      summary: returns a 1px grey png
+      summary: Returns a 1px grey png
       description: You can use this to create a 1x1 Pixel sized placeholder that you can strech with width and height attributes. <img src="http://localhost:8000/placeholder" width=200 height=100>
+      responses:
+        '200':
+          description: An image
   /{extension}/{width}x{height}:
     get:
-      summary: returns a image with the given extension, the width and height
-      description: with /png/200x100/ you get a small png that you can resize in side your HTML with <img src=http://localhost:8000/png/200x100/>
+      summary: Returns a image with the given extension, the width and height
+      description: With /jpg/200x100/ you get a 200x100 png in gray <img src=http://localhost:8000/jpg/200x100/>
       parameters:
         - name: extension
           in: path
@@ -33,7 +36,7 @@ paths:
             type : integer
             minimum: 1
             maximum: 9999
-            example: 1
+            example: 400
         - name: height
           in: path
           required: true
@@ -42,12 +45,14 @@ paths:
             type : integer
             minimum: 1
             maximum: 9999
-            example: 1
-            
+            example: 200
+      responses:
+        '200':
+          description: An image
   /{extension}/{width}x{height}/color/{color}:
     get:
-      summary: returns a image with the given extension, the width and height
-      description: with /png/50x50/color/ff0000 you get a 50px square png, with a red background. The text-color will be choosen by the contrast to the wished color. Example output <img src=http://localhost:8000/png/50x50/color/ff0000>
+      summary: Returns a image with the given extension, the width and height
+      description: With /png/100x100/color/ff0000 you get a 100px square png, with a red background. The text-color will be choosen by the contrast to the wished color. Example output <img src=http://localhost:8000/png/100x100/color/ff0000>
       parameters:
         - name: extension
           in: path
@@ -66,7 +71,7 @@ paths:
             type : integer
             minimum: 1
             maximum: 9999
-            example: 1
+            example: 400
         - name: height
           in: path
           required: true
@@ -75,19 +80,23 @@ paths:
             type : integer
             minimum: 1
             maximum: 9999
-            example: 1
+            example: 200
         - name: color
           in: path
-          required: false
+          required: true
           description: Generates a image with desired background color.If this parameter is not send, a default color will be used
           schema:
             type : string
-            length: 6
-            example: 666666
+            minLength: 6
+            maxLength: 6
+            example: 9900ff
+      responses:
+        '200':
+          description: An image
   /{extension}/{width}x{height}/search/{queryString}:
     get:
-      summary: search for an image at pixabay with the queryString parameter and creates a placholder image with the disred dimensions
-      description: with /png/100x400/search/nature+tree you get a 100x400 pixel photo with the keywords "woman+car" 
+      summary: Search for an image at pixabay with the queryString parameter and creates a placholder image with the disred dimensions
+      description: With /png/250x200/search/elephant you get a 250x200 pixel photo with the keywords "elephant". . Example output <img src=http://localhost:8000/png/250x200/search/elephant>
       parameters:
         - name: extension
           in: path
@@ -106,7 +115,7 @@ paths:
             type : integer
             minimum: 1
             maximum: 9999
-            example: 1
+            example: 480
         - name: height
           in: path
           required: true
@@ -115,14 +124,16 @@ paths:
             type : integer
             minimum: 1
             maximum: 9999
-            example: 1
+            example: 360
         - name: queryString
           in: path
           required: true
           description: this parameter hold the search query against the pixabay api
           schema:
             type : string
-            length: 6
-            example: nature+tree
+            minLength: 1
+            maxLength: 40
+            example: nature
       responses:
-        '200':    # status code
+        '200':
+          description: An image
