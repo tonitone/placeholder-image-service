@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Placeholder Image Generator API
+  title: Placeholder Image Service API
   description: Just for learning fun.
   version: 0.0.8
 servers:

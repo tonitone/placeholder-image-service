@@ -1,8 +1,8 @@
 {
-  "name": "placeholder-image-generator",
+  "name": "placeholder-image-service",
   "version": "0.0.8-alpha",
   "type": "module",
-  "description": "placeholder image generator",
+  "description": "placeholder image service",
   "main": "index.js",
   "jest": {
     "timers": "legacy",
@@ -29,7 +29,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tonitone/placeholder-image-generator.git"
+    "url": "git+https://github.com/tonitone/placeholder-image-service.git"
   },
   "keywords": [
     "sap",
@@ -41,9 +41,9 @@
     "javascript"
   ],
   "bugs": {
-    "url": "https://github.com/tonitone/placeholder-image-generator/issues"
+    "url": "https://github.com/tonitone/placeholder-image-service/issues"
   },
-  "homepage": "https://github.com/tonitone/placeholder-image-generator#readme",
+  "homepage": "https://github.com/tonitone/placeholder-image-service#readme",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/plugin-transform-modules-commonjs": "^7.17.9",

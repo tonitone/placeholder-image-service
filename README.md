@@ -1,13 +1,18 @@
-# placeholder-image-generator
-> A service to generate placeholder images.
-> 
-[![CI](https://github.com/tonitone/placeholder-image-generator/actions/workflows/yarn-action.yml/badge.svg)](https://github.com/tonitone/placeholder-image-generator/actions/workflows/yarn-action.yml)
+# Placeholder Image Service
+> A service (web && CLI) to generate placeholder images with an intuitive API.
+
+```
+/png/400x300/color/ff0099
+/png/400x300/search/flower
+```
+
+[![CI](https://github.com/tonitone/placeholder-image-service/actions/workflows/yarn-action.yml/badge.svg)](https://github.com/tonitone/placeholder-image-service/actions/workflows/yarn-action.yml)
 
 ## Table of Contents
 
 <!-- toc -->
 
-- [placeholder-image-generator](#placeholder-image-generator)
+- [Placeholder Image Service](#placeholder-image-service)
   - [Table of Contents](#table-of-contents)
   - [About](#about)
   - [Install](#install)
