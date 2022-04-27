@@ -57,7 +57,7 @@
     "eslint-plugin-standard": "^5.0.0",
     "jest": "^27.5.1",
     "markdown-toc": "^1.2.0",
-    "supertest": "^6.2.2"
+    "supertest": "^6.2.3"
   },
   "dependencies": {
     "color": "^4.2.3",
