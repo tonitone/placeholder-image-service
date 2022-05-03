@@ -46,6 +46,8 @@ export let createImageOptions = {
     height: 1
   },
   storePath: './public/image-store',
+  backgroundColor: 'efefef',
+  fileNameSuffix: 'color_efefef',
   /**
    * A callback function that is called when the image is generated.
    * @param {object} options

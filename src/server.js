@@ -7,6 +7,11 @@ export const server = express()
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 
+server.use(function (req, res, next) {
+  console.log('Time:', Date.now())
+  next()
+})
+
 server.get('/', (req, res) => {
   return res.status(200).send(
     {
