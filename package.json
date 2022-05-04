@@ -46,27 +46,27 @@
   },
   "homepage": "https://github.com/tonitone/placeholder-image-service#readme",
   "devDependencies": {
-    "@babel/core": "^7.17.9",
+    "@babel/core": "7.17.10",
     "@babel/plugin-transform-modules-commonjs": "^7.17.9",
-    "@babel/preset-env": "^7.16.11",
-    "babel-jest": "^27.5.1",
-    "eslint": "8.13.0",
-    "eslint-config-standard": "^16.0.3",
+    "@babel/preset-env": "7.17.10",
+    "babel-jest": "28.0.3",
+    "eslint": "8.14.0",
+    "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-standard": "^5.0.0",
-    "jest": "^27.5.1",
+    "jest": "28.0.3",
     "markdown-toc": "^1.2.0",
-    "supertest": "^6.2.2"
+    "pm2": "^5.2.0"
   },
   "dependencies": {
     "color": "^4.2.3",
-    "express": "^4.17.3",
+    "express": "4.18.1",
     "jimp": "^0.16.1",
     "mime-types": "^2.1.35",
-    "node-fetch": "^3.2.3",
-    "pm2": "^5.2.0",
+    "node-fetch": "3.2.4",
     "swagger-ui-express": "^4.3.0",
     "yaml": "^2.0.1"
   }
