@@ -47,8 +47,8 @@
   "homepage": "https://github.com/tonitone/placeholder-image-service#readme",
   "devDependencies": {
     "@babel/core": "7.17.10",
-    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
-    "@babel/preset-env": "7.17.10",
+    "@babel/plugin-transform-modules-commonjs": "^7.18.6",
+    "@babel/preset-env": "7.19.0",
     "babel-jest": "28.0.3",
     "eslint": "8.14.0",
     "eslint-config-standard": "17.0.0",
