@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/tonitone/placeholder-image-service/actions/workflows/node.js.yml/badge.svg)](https://github.com/tonitone/placeholder-image-service/actions/workflows/node.js.yml)
+
 # Placeholder Image Service
 > A service (web && CLI) to generate placeholder images with an intuitive API.
 
