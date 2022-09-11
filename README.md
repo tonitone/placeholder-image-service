@@ -6,26 +6,23 @@
 /png/400x300/search/flower
 ```
 
-[![CI](https://github.com/tonitone/placeholder-image-service/actions/workflows/yarn-action.yml/badge.svg)](https://github.com/tonitone/placeholder-image-service/actions/workflows/yarn-action.yml)
-
 ## Table of Contents
 
 <!-- toc -->
 
-- [Placeholder Image Service](#placeholder-image-service)
-  - [Table of Contents](#table-of-contents)
-  - [About](#about)
-  - [Install](#install)
-  - [Api](#api)
-  - [Usage](#usage)
-    - [CLI based](#cli-based)
-    - [Web based](#web-based)
-  - [Test](#test)
-  - [Server](#server)
-    - [Start](#start)
-    - [Stop](#stop)
-    - [Restart](#restart)
-    - [Logs](#logs)
+- [About](#about)
+- [Install](#install)
+- [Api](#api)
+- [Usage](#usage)
+  * [CLI based](#cli-based)
+  * [Web based](#web-based)
+- [Test](#test)
+- [Server](#server)
+  * [Start](#start)
+  * [Stop](#stop)
+  * [Restart](#restart)
+  * [Logs](#logs)
+- [Node.js CI - Github action](#nodejs-ci---github-action)
 
 <!-- tocstop -->
 
@@ -100,3 +97,7 @@ Or use the following `pm2` (Process Manager 2) based run scripts, with an built-
 
 ### Logs 
 `yarn run server:stop`
+
+## Node.js CI - Github action 
+The used npm github-action needs an package-lock.json. 
+Thats why we have to keep `yarn.lock` and Node.js CI `package-lock.json` in sync at the moment.
