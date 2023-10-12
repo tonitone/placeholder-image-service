@@ -46,7 +46,7 @@
   },
   "homepage": "https://github.com/tonitone/placeholder-image-service#readme",
   "devDependencies": {
-    "@babel/core": "7.19.3",
+    "@babel/core": "7.23.2",
     "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "@babel/preset-env": "7.20.2",
     "babel-jest": "29.7.0",
