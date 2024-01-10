@@ -67,7 +67,7 @@
     "jimp": "^0.16.2",
     "mime-types": "^2.1.35",
     "node-fetch": "3.3.1",
-    "swagger-ui-express": "^4.5.0",
+    "swagger-ui-express": "^5.0.0",
     "yaml": "^2.3.1"
   }
 }
